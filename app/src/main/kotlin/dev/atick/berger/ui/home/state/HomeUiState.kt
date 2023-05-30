@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-package dev.atick.compose.ui.home.state
+package dev.atick.berger.ui.home.state
 
-import dev.atick.compose.data.home.Item
+import dev.atick.berger.data.home.Item
 import dev.atick.core.ui.base.BaseUiState
 import dev.atick.core.ui.utils.UiText
 import kotlinx.coroutines.flow.MutableStateFlow

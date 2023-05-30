@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package dev.atick.compose.ui.home
+package dev.atick.berger.ui.home
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -33,8 +33,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import dev.atick.compose.R
-import dev.atick.compose.ui.home.components.HomeContent
+import dev.atick.berger.R
+import dev.atick.berger.ui.home.components.HomeContent
 import dev.atick.core.ui.components.TopBar
 import kotlinx.coroutines.launch
 

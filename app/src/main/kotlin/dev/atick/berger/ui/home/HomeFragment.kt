@@ -14,15 +14,17 @@
  * limitations under the License.
  */
 
-package dev.atick.compose.data.home
+package dev.atick.berger.ui.home
 
-import dev.atick.storage.room.data.models.Item
+import androidx.compose.runtime.Composable
+import dagger.hilt.android.AndroidEntryPoint
+import dev.atick.core.ui.base.BaseFragment
 
-data class Item(
-    val id: Int,
-    val title: String,
-) {
-    fun toRoomItem(): Item {
-        return Item(name = title)
+@AndroidEntryPoint
+class HomeFragment : BaseFragment() {
+
+    @Composable
+    override fun ComposeUi() {
+        HomeScreen()
     }
 }

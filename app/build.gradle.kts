@@ -28,9 +28,9 @@ plugins {
 
 android {
     // ... Application Version ...
-    val majorUpdateVersion = 1
+    val majorUpdateVersion = 0
     val minorUpdateVersion = 0
-    val patchVersion = 0
+    val patchVersion = 1
 
     val mVersionCode = majorUpdateVersion.times(10_000)
         .plus(minorUpdateVersion.times(100))
@@ -43,7 +43,7 @@ android {
     defaultConfig {
         versionCode = mVersionCode
         versionName = mVersionName
-        applicationId = "dev.atick.compose"
+        applicationId = "dev.atick.berger"
     }
 
     buildTypes {
@@ -70,7 +70,7 @@ android {
         buildConfig = true
     }
 
-    namespace = "dev.atick.compose"
+    namespace = "dev.atick.berger"
 }
 
 dependencies {

@@ -32,7 +32,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Jetpack"
+rootProject.name = "Berger"
 include(":app")
 include(":core:ui")
 include(":core:android")

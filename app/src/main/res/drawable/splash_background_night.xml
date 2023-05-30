@@ -19,7 +19,9 @@
 
     <item android:drawable="@color/surface_dark" />
     <item
-        android:drawable="@drawable/ic_launcher_foreground"
+        android:drawable="@drawable/logo"
+        android:height="180dp"
+        android:width="240dp"
         android:gravity="center" />
 
 </layer-list>

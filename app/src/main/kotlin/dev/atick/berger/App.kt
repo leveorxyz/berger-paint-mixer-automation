@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package dev.atick.compose
+package dev.atick.berger
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package dev.atick.compose.ui.home
+package dev.atick.berger.ui.home
 
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dev.atick.compose.repository.home.HomeRepository
-import dev.atick.compose.ui.home.state.HomeUiState
-import dev.atick.compose.ui.home.state.setLoading
-import dev.atick.compose.ui.home.state.setToastMessage
+import dev.atick.berger.repository.home.HomeRepository
+import dev.atick.berger.ui.home.state.HomeUiState
+import dev.atick.berger.ui.home.state.setLoading
+import dev.atick.berger.ui.home.state.setToastMessage
 import dev.atick.core.ui.base.BaseViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow

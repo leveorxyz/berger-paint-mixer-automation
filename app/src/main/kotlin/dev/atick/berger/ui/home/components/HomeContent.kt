@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package dev.atick.compose.ui.home.components
+package dev.atick.berger.ui.home.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -26,8 +26,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import dev.atick.compose.R
-import dev.atick.compose.data.home.Item
+import dev.atick.berger.R
+import dev.atick.berger.data.home.Item
 import dev.atick.core.ui.components.LoadingButton
 
 @Composable

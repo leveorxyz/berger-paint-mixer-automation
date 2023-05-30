@@ -14,12 +14,15 @@
  * limitations under the License.
  */
 
-package dev.atick.compose.repository.home
+package dev.atick.berger.data.home
 
-import dev.atick.compose.data.home.Item
+import dev.atick.storage.room.data.models.Item
 
-interface HomeRepository {
-    suspend fun getItem(id: Int): Result<Item>
-    suspend fun saveItem(item: Item)
-    suspend fun getUserId(): Result<String>
+data class Item(
+    val id: Int,
+    val title: String,
+) {
+    fun toRoomItem(): Item {
+        return Item(name = title)
+    }
 }

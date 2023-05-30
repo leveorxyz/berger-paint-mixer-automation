@@ -14,17 +14,12 @@
  * limitations under the License.
  */
 
-package dev.atick.compose.ui.home
+package dev.atick.berger.repository.home
 
-import androidx.compose.runtime.Composable
-import dagger.hilt.android.AndroidEntryPoint
-import dev.atick.core.ui.base.BaseFragment
+import dev.atick.berger.data.home.Item
 
-@AndroidEntryPoint
-class HomeFragment : BaseFragment() {
-
-    @Composable
-    override fun ComposeUi() {
-        HomeScreen()
-    }
+interface HomeRepository {
+    suspend fun getItem(id: Int): Result<Item>
+    suspend fun saveItem(item: Item)
+    suspend fun getUserId(): Result<String>
 }

@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-package dev.atick.compose.repository.home
+package dev.atick.berger.repository.home
 
-import dev.atick.compose.data.home.Item
+import dev.atick.berger.data.home.Item
 import dev.atick.network.data.JetpackDataSource
 import dev.atick.storage.preferences.data.PreferencesDatastore
 import dev.atick.storage.room.data.JetpackDao

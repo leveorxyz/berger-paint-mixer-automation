@@ -15,13 +15,6 @@
      limitations under the License.
 -->
 
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <item android:drawable="@color/surface_light" />
-    <item
-        android:drawable="@drawable/logo"
-        android:height="180dp"
-        android:width="240dp"
-        android:gravity="center" />
-
-</layer-list>
+<resources>
+    <color name="ic_launcher_background">#FFFFFF</color>
+</resources>
