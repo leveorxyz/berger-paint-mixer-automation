@@ -16,7 +16,7 @@ Berger Automation Demo
 <br>
 
 <p align="center">
-  <img src="technologies.png" width="700"/>
+<img src="https://github.com/atick-faisal/Berger-Android/assets/38709932/8c086f16-8e25-426b-8ac0-0a331e16e47b" width="600"/>
 </p>
 
 <br>
