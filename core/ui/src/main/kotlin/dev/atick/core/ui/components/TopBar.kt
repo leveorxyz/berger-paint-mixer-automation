@@ -42,7 +42,7 @@ import dev.atick.core.ui.R
 @Composable
 fun TitleText(
     modifier: Modifier = Modifier,
-    title: String
+    title: String,
 ) {
     Row(
         modifier = modifier.then(Modifier.fillMaxHeight()),
@@ -51,7 +51,7 @@ fun TitleText(
         Image(
             painter = painterResource(id = R.drawable.brush),
             contentDescription = stringResource(R.string.berger),
-            modifier = Modifier.size(40.dp)
+            modifier = Modifier.size(40.dp),
         )
         Spacer(modifier = Modifier.width(16.dp))
         Text(
@@ -67,7 +67,7 @@ fun TitleText(
 fun TopBar(
     modifier: Modifier = Modifier,
     title: String,
-    menuItems: @Composable () -> Unit = { }
+    menuItems: @Composable () -> Unit = { },
 ) {
     return Card(
         modifier = modifier

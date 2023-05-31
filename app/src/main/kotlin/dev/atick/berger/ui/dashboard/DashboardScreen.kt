@@ -1,3 +1,19 @@
+/*
+ * Copyright 2023 Atick Faisal
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package dev.atick.berger.ui.dashboard
 
 import androidx.compose.foundation.layout.Column
@@ -40,9 +56,8 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun DashboardScreen(
-    dashboardViewModel: DashboardViewModel = viewModel()
+    dashboardViewModel: DashboardViewModel = viewModel(),
 ) {
-
     val dashboardUiState by dashboardViewModel
         .dashboardUiState
         .collectAsStateWithLifecycle()
@@ -71,32 +86,32 @@ fun DashboardScreen(
                     }) {
                         Icon(
                             imageVector = Icons.Default.Close,
-                            contentDescription = stringResource(id = R.string.close)
+                            contentDescription = stringResource(id = R.string.close),
                         )
                     }
-                }
+                },
             )
         },
-        snackbarHost = { SnackbarHost(hostState = snackBarHost) }
+        snackbarHost = { SnackbarHost(hostState = snackBarHost) },
     ) { paddingValues ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
                 .padding(horizontal = 16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Spacer(modifier = Modifier.height(16.dp))
-            if(dashboardUiState.inProgress) {
+            if (dashboardUiState.inProgress) {
                 Text(text = "Power Consumption")
                 LinePlot(
                     dataset = dashboardUiState.powerConsumption,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(200.dp)
+                        .height(200.dp),
                 )
                 Text(
-                    text = "Time (Minutes)"
+                    text = "Time (Minutes)",
                 )
                 Spacer(modifier = Modifier.height(8.dp))
             }
@@ -105,7 +120,7 @@ fun DashboardScreen(
                 label = "Batch Number",
                 items = enumValues<BatchNumber>().map { it.value },
                 selectedItem = dashboardUiState.batchNumber.value,
-                onSelect = dashboardViewModel::setBatchNumber
+                onSelect = dashboardViewModel::setBatchNumber,
             )
             Spacer(modifier = Modifier.height(16.dp))
             LoadingButton(
@@ -113,7 +128,7 @@ fun DashboardScreen(
                     .fillMaxWidth()
                     .height(56.dp),
                 loading = false,
-                onClick = { dashboardViewModel.turnOn() }
+                onClick = { dashboardViewModel.turnOn() },
             ) {
                 Text(text = "TURN ON", fontSize = 16.sp)
             }
@@ -126,8 +141,8 @@ fun DashboardScreen(
                 onClick = { dashboardViewModel.turnOff() },
                 colors = ButtonDefaults.buttonColors(
                     containerColor = MaterialTheme.colorScheme.errorContainer,
-                    contentColor = MaterialTheme.colorScheme.error
-                )
+                    contentColor = MaterialTheme.colorScheme.error,
+                ),
             ) {
                 Text(text = "TURN OFF", fontSize = 16.sp)
             }
@@ -142,8 +157,8 @@ fun DashboardScreen(
                 onClick = { dashboardViewModel.disconnect() },
                 colors = ButtonDefaults.buttonColors(
                     containerColor = MaterialTheme.colorScheme.error,
-                    contentColor = MaterialTheme.colorScheme.onError
-                )
+                    contentColor = MaterialTheme.colorScheme.onError,
+                ),
             ) {
                 Text(text = "DISCONNECT", fontSize = 16.sp)
             }

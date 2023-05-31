@@ -86,7 +86,7 @@ fun LoadingButton(
         modifier = modifier,
         enabled = enabled,
         colors = colors,
-        shape = RoundedCornerShape(8.dp)
+        shape = RoundedCornerShape(8.dp),
     ) {
         Box(
             contentAlignment = Alignment.Center,

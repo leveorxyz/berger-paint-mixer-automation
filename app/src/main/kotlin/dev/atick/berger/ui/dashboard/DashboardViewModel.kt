@@ -1,3 +1,19 @@
+/*
+ * Copyright 2023 Atick Faisal
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package dev.atick.berger.ui.dashboard
 
 import androidx.lifecycle.viewModelScope
@@ -22,7 +38,7 @@ import javax.inject.Inject
 @HiltViewModel
 class DashboardViewModel @Inject constructor(
     private val bluetoothManager: BluetoothManager,
-    private val bluetoothDataSource: BluetoothDataSource
+    private val bluetoothDataSource: BluetoothDataSource,
 ) : BaseViewModel<DashboardUiState>() {
 
     private val _dashboardUiState = MutableStateFlow(DashboardUiState())
@@ -37,8 +53,11 @@ class DashboardViewModel @Inject constructor(
     private var disconnectJob: Job? = null
 
     fun setBatchNumber(batchName: String) {
-        val batchNumber = if (batchName == BatchNumber.BATCH_1.value)
-            BatchNumber.BATCH_1 else BatchNumber.BATCH_2
+        val batchNumber = if (batchName == BatchNumber.BATCH_1.value) {
+            BatchNumber.BATCH_1
+        } else {
+            BatchNumber.BATCH_2
+        }
         _dashboardUiState.update { it.copy(batchNumber = batchNumber) }
     }
 
@@ -66,14 +85,14 @@ class DashboardViewModel @Inject constructor(
         viewModelScope.launch {
             while (dashboardUiState.value.inProgress) {
                 powerConsumption.add(
-                    Entry(seconds / 60.0F, power)
+                    Entry(seconds / 60.0F, power),
                 )
                 _dashboardUiState.update {
                     it.copy(
                         powerConsumption = LineDataSet(
                             powerConsumption,
-                            "Power (W)"
-                        )
+                            "Power (W)",
+                        ),
                     )
                 }
                 seconds += 1.0F
@@ -106,9 +125,9 @@ class DashboardViewModel @Inject constructor(
         _dashboardUiState.update {
             it.copy(
                 toastMessage = UiText.DynamicString(
-                    "Disconnecting. Please Wait ... "
+                    "Disconnecting. Please Wait ... ",
                 ),
-                loading = true
+                loading = true,
             )
         }
         disconnectJob = viewModelScope.launch {
@@ -129,5 +148,4 @@ class DashboardViewModel @Inject constructor(
     fun clearError() {
         _dashboardUiState.update { it.copy(toastMessage = null) }
     }
-
 }
