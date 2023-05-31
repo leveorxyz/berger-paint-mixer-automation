@@ -18,4 +18,6 @@
 <resources>
     <color name="surface_light">#FFFCFDF6</color>
     <color name="surface_dark">#FF1A1C19</color>
+    <color name="primary">#FF6750A4</color>
+    <color name="primary_semi_transparent">#776750A4</color>
 </resources>

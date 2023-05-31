@@ -20,4 +20,14 @@
     <string name="btn_click_text">Get Item</string>
     <string name="home">Home</string>
     <string name="error_item_loading">Error Loading Item</string>
+    <string name="connection">Connection</string>
+    <string name="refresh">Refresh</string>
+    <string name="scan">Scan</string>
+    <string name="connect">Connect</string>
+    <string name="device_type">Device Type</string>
+    <string name="close">Close</string>
+    <string name="select">Select</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="no_device">No Device</string>
+    <string name="no_devices">No Device Found! Please Refresh Paired Device List or Scan for New Devices</string>
 </resources>

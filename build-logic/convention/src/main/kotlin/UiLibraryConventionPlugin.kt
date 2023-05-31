@@ -41,7 +41,8 @@ class UiLibraryConventionPlugin : Plugin<Project> {
                     freeCompilerArgs = freeCompilerArgs + listOf(
                         "-opt-in=kotlin.RequiresOptIn",
                         "-opt-in=kotlinx.coroutines.FlowPreview",
-                        "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi"
+                        "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
+                        "-opt-in=androidx.compose.material3.ExperimentalMaterial3Api"
                     )
                 }
 

@@ -62,9 +62,7 @@ fun HomeScreen(
     Scaffold(
         topBar = {
             TopBar(
-                title = stringResource(R.string.home),
-                onSearchClick = {},
-                onMenuClick = {},
+                title = stringResource(R.string.home)
             )
         },
         snackbarHost = { SnackbarHost(hostState = snackbarHost) },

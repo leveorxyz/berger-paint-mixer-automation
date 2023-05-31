@@ -19,6 +19,7 @@ package dev.atick.core.extensions
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Notification
+import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -39,7 +40,7 @@ fun Context.showToast(message: String) {
 
 fun Context.hasPermission(permission: String): Boolean {
     return ContextCompat.checkSelfPermission(this, permission) ==
-        PackageManager.PERMISSION_GRANTED
+            PackageManager.PERMISSION_GRANTED
 }
 
 fun Context.isAllPermissionsGranted(permissions: List<String>): Boolean {
@@ -61,6 +62,15 @@ fun Context.showNotification(
 fun Context.cancelNotification(notificationId: Int) {
     with(NotificationManagerCompat.from(this)) {
         cancel(notificationId)
+    }
+}
+
+fun Context.tryUnregisterReceiver(receiver: BroadcastReceiver): Result<Unit> {
+    return try {
+        unregisterReceiver(receiver)
+        Result.success(Unit)
+    } catch (e: Exception) {
+        Result.failure(e)
     }
 }
 

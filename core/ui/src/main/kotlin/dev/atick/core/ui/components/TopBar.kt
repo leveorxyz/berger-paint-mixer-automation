@@ -16,55 +16,42 @@
 
 package dev.atick.core.ui.components
 
-import androidx.compose.foundation.background
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Close
-import androidx.compose.material.icons.filled.Logout
-import androidx.compose.material.icons.filled.MoreVert
-import androidx.compose.material.icons.filled.Refresh
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Card
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import dev.atick.core.ui.R
 
 @Composable
 fun TitleText(
     modifier: Modifier = Modifier,
-    title: String,
-    color: Color = MaterialTheme.colorScheme.primary,
+    title: String
 ) {
     Row(
         modifier = modifier.then(Modifier.fillMaxHeight()),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        Spacer(
-            modifier = Modifier
-                .clip(
-                    RoundedCornerShape(topEnd = 8.dp, bottomEnd = 8.dp),
-                )
-                .width(8.dp)
-                .height(32.dp)
-                .background(color)
-                .padding(end = 16.dp),
+        Image(
+            painter = painterResource(id = R.drawable.brush),
+            contentDescription = stringResource(R.string.berger),
+            modifier = Modifier.size(40.dp)
         )
         Spacer(modifier = Modifier.width(16.dp))
         Text(
@@ -80,11 +67,7 @@ fun TitleText(
 fun TopBar(
     modifier: Modifier = Modifier,
     title: String,
-    onSearchClick: (() -> Unit)? = null,
-    onRefreshClick: (() -> Unit)? = null,
-    onMenuClick: (() -> Unit)? = null,
-    onExitClick: (() -> Unit)? = null,
-    onLogoutClick: (() -> Unit)? = null,
+    menuItems: @Composable () -> Unit = { }
 ) {
     return Card(
         modifier = modifier
@@ -106,50 +89,7 @@ fun TopBar(
             TitleText(title = title)
 
             Row {
-                onSearchClick?.let { onSearchClick ->
-                    IconButton(onClick = onSearchClick) {
-                        Icon(
-                            imageVector = Icons.Default.Search,
-                            contentDescription = "Search",
-                        )
-                    }
-                }
-
-                onRefreshClick?.let { onRefreshClick ->
-                    IconButton(onClick = onRefreshClick) {
-                        Icon(
-                            imageVector = Icons.Default.Refresh,
-                            contentDescription = "Refresh",
-                        )
-                    }
-                }
-
-                onMenuClick?.let { onMenuClick ->
-                    IconButton(onClick = onMenuClick) {
-                        Icon(
-                            imageVector = Icons.Default.MoreVert,
-                            contentDescription = "Menu",
-                        )
-                    }
-                }
-
-                onLogoutClick?.let { onLogoutClick ->
-                    IconButton(onClick = onLogoutClick) {
-                        Icon(
-                            imageVector = Icons.Default.Logout,
-                            contentDescription = "Logout",
-                        )
-                    }
-                }
-
-                onExitClick?.let { onExitClick ->
-                    IconButton(onClick = onExitClick) {
-                        Icon(
-                            imageVector = Icons.Default.Close,
-                            contentDescription = "Exit",
-                        )
-                    }
-                }
+                menuItems()
             }
         }
     }
