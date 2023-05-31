@@ -16,6 +16,8 @@
 
 @file:Suppress("UnstableApiUsage")
 
+import java.net.URI
+
 pluginManagement {
     includeBuild("build-logic")
     repositories {
@@ -29,6 +31,7 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven { url = URI("https://jitpack.io") }
     }
 }
 

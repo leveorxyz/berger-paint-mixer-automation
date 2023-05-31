@@ -36,6 +36,7 @@ import dev.atick.bluetooth.common.receiver.ScannedDeviceReceiver
 import dev.atick.bluetooth.common.utils.BluetoothUtils
 import dev.atick.core.di.IoDispatcher
 import dev.atick.core.extensions.hasPermission
+import dev.atick.core.extensions.tryUnregisterReceiver
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -90,6 +91,7 @@ class BluetoothClassic @Inject constructor(
     }
 
     private val deviceStateReceiver = DeviceStateReceiver { device ->
+        Timber.d("CONNECTION STATE CHANGED ... ")
         if (connectedDeviceAddress != device.address) return@DeviceStateReceiver
         _deviceState.update { device }
     }
@@ -134,7 +136,7 @@ class BluetoothClassic @Inject constructor(
         if (context.hasPermission(Manifest.permission.BLUETOOTH_SCAN)) {
             try {
                 bluetoothAdapter?.cancelDiscovery()
-                context.unregisterReceiver(scannedDeviceReceiver)
+                context.tryUnregisterReceiver(scannedDeviceReceiver)
             } catch (e: Exception) {
                 Timber.e(e)
             }
@@ -150,17 +152,21 @@ class BluetoothClassic @Inject constructor(
             return Result.failure(IllegalStateException("Please Close Existing Connection"))
         }
         Timber.d("INITIATING CONNECTION ... ")
-        bluetoothSocket = bluetoothAdapter?.getRemoteDevice(address)
-            ?.createInsecureRfcommSocketToServiceRecord(UUID.fromString(BT_UUID))
+        connectedDeviceAddress = address
+        val remoteDevice = bluetoothAdapter?.getRemoteDevice(address)
+            ?: return Result.failure(IllegalStateException("Could not FInd Remote Device"))
+        bluetoothSocket = remoteDevice
+            .createInsecureRfcommSocketToServiceRecord(UUID.fromString(BT_UUID))
         return try {
             withContext(ioDispatcher) {
                 bluetoothSocket?.run { connect() }
-                connectedDeviceAddress = address
+                _deviceState.update { remoteDevice.simplify(true) }
                 listenForIncomingBluetoothMessages()
                 Result.success(Unit)
             }
         } catch (e: IOException) {
             Timber.e(e)
+            connectedDeviceAddress = null
             Result.failure(e)
         }
     }
@@ -183,9 +189,10 @@ class BluetoothClassic @Inject constructor(
             withContext(ioDispatcher) {
                 bluetoothSocket?.close()
                 while (_deviceState.value?.connected == true) {
-                    delay(1000L)
+                    delay(100L)
                 }
                 cleanup()
+                _deviceState.update { null }
                 Result.success(Unit)
             }
         } catch (e: IOException) {
@@ -236,10 +243,11 @@ class BluetoothClassic @Inject constructor(
 
     private fun cleanup() {
         Timber.d("CLEANING UP ... ")
-        // bluetoothSocket = null
+        bluetoothSocket = null
         connectedDeviceAddress = null
-        context.unregisterReceiver(bluetoothStateReceiver)
-        context.unregisterReceiver(deviceStateReceiver)
+        context.tryUnregisterReceiver(scannedDeviceReceiver)
+        context.tryUnregisterReceiver(bluetoothStateReceiver)
+        context.tryUnregisterReceiver(deviceStateReceiver)
         clearScannedDevices()
     }
 }

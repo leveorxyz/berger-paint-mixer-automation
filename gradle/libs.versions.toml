@@ -22,6 +22,9 @@ androidxComposeBom = "2023.05.01"
 androidxComposeCompiler = "1.4.7"
 lottieCompose = "6.0.0"
 
+# ... APP ...
+chart = "3.1.0"
+
 # ... NETWORK ...
 okhttp = "4.11.0"
 retrofit = "2.9.0"
@@ -91,6 +94,9 @@ androidx-lifecycle-viewModelCompose = { group = "androidx.lifecycle", name = "li
 androidx-navigation-fragment = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "androidxNavigation" }
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "androidxNavigation" }
 lottie-compose = { group = "com.airbnb.android", name = "lottie-compose", version.ref = "lottieCompose" }
+
+# ... APP ...
+chart = { group = "com.github.PhilJay", name = "MPAndroidChart", version.ref = "chart" }
 
 # ... NETWORK ...
 okhttp-bom = { group = "com.squareup.okhttp3", name = "okhttp-bom", version.ref = "okhttp" }

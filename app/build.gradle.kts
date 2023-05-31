@@ -79,4 +79,7 @@ dependencies {
     implementation(project(":storage:room"))
     implementation(project(":storage:preferences"))
     implementation(project(":bluetooth:classic"))
+
+    // ... Chart
+    implementation(libs.chart)
 }

@@ -63,8 +63,6 @@ fun HomeScreen(
         topBar = {
             TopBar(
                 title = stringResource(R.string.home),
-                onSearchClick = {},
-                onMenuClick = {},
             )
         },
         snackbarHost = { SnackbarHost(hostState = snackbarHost) },

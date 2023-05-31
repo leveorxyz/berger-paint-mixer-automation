@@ -15,9 +15,9 @@
      limitations under the License.
 -->
 
-<resources>
-    <color name="surface_light">#FFFCFDF6</color>
-    <color name="surface_dark">#FF1A1C19</color>
-    <color name="primary">#FF6750A4</color>
-    <color name="primary_semi_transparent">#776750A4</color>
-</resources>
+<shape android:shape="rectangle" xmlns:android="http://schemas.android.com/apk/res/android">
+    <gradient android:startColor="@color/primary_semi_transparent"
+        android:endColor="#00FFFFFF"
+        android:type="linear"
+        android:angle="270"/>
+</shape>
