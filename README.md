@@ -15,9 +15,8 @@ Berger Automation Demo
 <br>
 <br>
 
-<p align="center">
-<img src="https://github.com/leveorxyz/berger-paint-mixer-automation/assets/38709932/8c086f16-8e25-426b-8ac0-0a331e16e47b" width="600"/>
-</p>
+<img width="1920" height="1920" alt="242148935-8c086f16-8e25-426b-8ac0-0a331e16e47b" src="https://github.com/user-attachments/assets/676f40a2-17c0-4378-9733-7602fc636d63" />
+
 
 <br>
 <br>
