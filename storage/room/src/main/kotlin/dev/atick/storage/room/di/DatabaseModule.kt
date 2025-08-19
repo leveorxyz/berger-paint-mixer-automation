@@ -36,11 +36,9 @@ object DatabaseModule {
     @Provides
     fun provideRoomDatabase(
         @ApplicationContext appContext: Context,
-    ): JetpackDatabase {
-        return Room.databaseBuilder(
-            appContext,
-            JetpackDatabase::class.java,
-            ROOM_DATABASE_NAME,
-        ).fallbackToDestructiveMigration().build()
-    }
+    ): JetpackDatabase = Room.databaseBuilder(
+        appContext,
+        JetpackDatabase::class.java,
+        ROOM_DATABASE_NAME,
+    ).fallbackToDestructiveMigration().build()
 }

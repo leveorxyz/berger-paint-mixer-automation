@@ -34,7 +34,5 @@ object NotificationModule {
     @Singleton
     fun provideNotificationManager(
         @ApplicationContext context: Context,
-    ): NotificationManager {
-        return context.getSystemService(NOTIFICATION_SERVICE) as NotificationManager
-    }
+    ): NotificationManager = context.getSystemService(NOTIFICATION_SERVICE) as NotificationManager
 }

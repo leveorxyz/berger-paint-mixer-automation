@@ -1,18 +1,32 @@
+import org.gradle.kotlin.dsl.compileOnly
+import org.gradle.kotlin.dsl.gradlePlugin
+import org.gradle.kotlin.dsl.libs
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     `kotlin-dsl`
 }
 
 group = "dev.atick.build.logic"
 
+val javaVersion = libs.versions.java.get().toInt()
+
 java {
-    val javaVersion = libs.versions.java.get().toInt()
     sourceCompatibility = JavaVersion.values()[javaVersion - 1]
     targetCompatibility = JavaVersion.values()[javaVersion - 1]
+}
+
+kotlin {
+    compilerOptions {
+        jvmTarget.set(JvmTarget.valueOf("JVM_$javaVersion"))
+    }
 }
 
 dependencies {
     compileOnly(libs.kotlin.gradlePlugin)
     compileOnly(libs.android.gradlePlugin)
+    compileOnly(libs.compose.gradlePlugin)
+    compileOnly(libs.dokka.gradlePlugin)
 }
 
 gradlePlugin {
@@ -36,6 +50,10 @@ gradlePlugin {
         register("firebase") {
             id = "dev.atick.firebase"
             implementationClass = "FirebaseConventionPlugin"
+        }
+        register("dokka") {
+            id = "dev.atick.dokka"
+            implementationClass = "DokkaConventionPlugin"
         }
     }
 }

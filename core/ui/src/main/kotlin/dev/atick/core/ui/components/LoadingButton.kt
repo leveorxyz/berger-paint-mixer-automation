@@ -45,7 +45,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -63,10 +63,10 @@ enum class AnimationType {
     Fade,
 }
 
-private const val NumIndicators = 3
-private const val IndicatorSize = 12
-private const val BounceAnimationDurationMillis = 300
-private const val FadeAnimationDurationMillis = 600
+private const val NUM_INDICATORS = 3
+private const val INDICATOR_SIZE = 12
+private const val BOUNCE_ANIMATION_DURATION_MILLIS = 300
+private const val FADE_ANIMATION_DURATION_MILLIS = 600
 
 @Composable
 fun LoadingButton(
@@ -126,25 +126,25 @@ private val AnimationType.animationDuration: Int
     get() = when (this) {
         AnimationType.Bounce,
         AnimationType.LazyBounce,
-        -> BounceAnimationDurationMillis
+        -> BOUNCE_ANIMATION_DURATION_MILLIS
 
-        AnimationType.Fade -> FadeAnimationDurationMillis
+        AnimationType.Fade -> FADE_ANIMATION_DURATION_MILLIS
     }
 
 private val AnimationType.animationDelay: Int
-    get() = animationDuration / NumIndicators
+    get() = animationDuration / NUM_INDICATORS
 
 private val AnimationType.initialValue: Float
     get() = when (this) {
-        AnimationType.Bounce -> IndicatorSize / 2f
-        AnimationType.LazyBounce -> -IndicatorSize / 2f
+        AnimationType.Bounce -> INDICATOR_SIZE / 2f
+        AnimationType.LazyBounce -> -INDICATOR_SIZE / 2f
         AnimationType.Fade -> 1f
     }
 
 private val AnimationType.targetValue: Float
     get() = when (this) {
-        AnimationType.Bounce -> -IndicatorSize / 2f
-        AnimationType.LazyBounce -> IndicatorSize / 2f
+        AnimationType.Bounce -> -INDICATOR_SIZE / 2f
+        AnimationType.LazyBounce -> INDICATOR_SIZE / 2f
         AnimationType.Fade -> .2f
     }
 
@@ -156,12 +156,12 @@ interface LoadingIndicatorState {
 }
 
 class LoadingIndicatorStateImpl : LoadingIndicatorState {
-    private val animatedValues = List(NumIndicators) { mutableStateOf(0f) }
+    private val animatedValues = List(NUM_INDICATORS) { mutableFloatStateOf(0f) }
 
-    override fun get(index: Int): Float = animatedValues[index].value
+    override fun get(index: Int): Float = animatedValues[index].floatValue
 
     override fun start(animationType: AnimationType, scope: CoroutineScope) {
-        repeat(NumIndicators) { index ->
+        repeat(NUM_INDICATORS) { index ->
             scope.launch {
                 animate(
                     initialValue = animationType.initialValue,
@@ -171,7 +171,7 @@ class LoadingIndicatorStateImpl : LoadingIndicatorState {
                         repeatMode = RepeatMode.Reverse,
                         initialStartOffset = StartOffset(animationType.animationDelay * index),
                     ),
-                ) { value, _ -> animatedValues[index].value = value }
+                ) { value, _ -> animatedValues[index].floatValue = value }
             }
         }
     }
@@ -182,9 +182,7 @@ class LoadingIndicatorStateImpl : LoadingIndicatorState {
 
         other as LoadingIndicatorStateImpl
 
-        if (animatedValues != other.animatedValues) return false
-
-        return true
+        return animatedValues == other.animatedValues
     }
 
     override fun hashCode(): Int {
@@ -212,18 +210,18 @@ fun rememberLoadingIndicatorState(
 @Composable
 private fun LoadingIndicator(
     animating: Boolean,
+    animationType: AnimationType,
     modifier: Modifier = Modifier,
     color: Color = MaterialTheme.colorScheme.onPrimary,
     indicatorSpacing: Dp = 2.dp,
-    animationType: AnimationType,
 ) {
     val state = rememberLoadingIndicatorState(animating, animationType)
     Row(modifier = modifier, verticalAlignment = Alignment.CenterVertically) {
-        repeat(NumIndicators) { index ->
+        repeat(NUM_INDICATORS) { index ->
             LoadingDot(
                 modifier = Modifier
                     .padding(horizontal = indicatorSpacing)
-                    .width(IndicatorSize.dp)
+                    .width(INDICATOR_SIZE.dp)
                     .aspectRatio(1f)
                     .then(
                         when (animationType) {
@@ -231,7 +229,7 @@ private fun LoadingIndicator(
                             AnimationType.LazyBounce,
                             -> Modifier.offset(
                                 y = state[index].coerceAtMost(
-                                    IndicatorSize / 2f,
+                                    INDICATOR_SIZE / 2f,
                                 ).dp,
                             )
 

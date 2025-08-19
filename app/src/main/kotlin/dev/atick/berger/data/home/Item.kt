@@ -22,7 +22,5 @@ data class Item(
     val id: Int,
     val title: String,
 ) {
-    fun toRoomItem(): Item {
-        return Item(name = title)
-    }
+    fun toRoomItem(): Item = Item(name = title)
 }

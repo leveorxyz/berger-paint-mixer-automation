@@ -32,10 +32,10 @@ import dev.atick.core.ui.components.LoadingButton
 
 @Composable
 fun HomeContent(
+    onButtonCLick: () -> Unit,
     modifier: Modifier = Modifier,
     item: Item? = null,
     loading: Boolean = false,
-    onButtonCLick: () -> Unit,
 ) {
     Column(
         modifier = modifier,

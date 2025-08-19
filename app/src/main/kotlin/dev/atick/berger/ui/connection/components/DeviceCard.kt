@@ -26,14 +26,14 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.DirectionsRun
+import androidx.compose.material.icons.automirrored.filled.NavigateNext
 import androidx.compose.material.icons.filled.Bluetooth
 import androidx.compose.material.icons.filled.BluetoothAudio
 import androidx.compose.material.icons.filled.Cloud
 import androidx.compose.material.icons.filled.Computer
-import androidx.compose.material.icons.filled.DirectionsRun
 import androidx.compose.material.icons.filled.Image
 import androidx.compose.material.icons.filled.KeyboardAlt
-import androidx.compose.material.icons.filled.NavigateNext
 import androidx.compose.material.icons.filled.Toys
 import androidx.compose.material.icons.filled.Watch
 import androidx.compose.material.icons.outlined.ViewInAr
@@ -55,16 +55,16 @@ import dev.atick.bluetooth.common.models.BtDeviceType
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DeviceCard(
-    modifier: Modifier = Modifier,
     device: BtDevice,
     onClick: (BtDevice) -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     Card(
         modifier = modifier,
         onClick = { onClick(device) },
     ) {
         Row(
-            modifier
+            Modifier
                 .fillMaxSize()
                 .padding(24.dp),
             verticalAlignment = Alignment.CenterVertically,
@@ -75,7 +75,7 @@ fun DeviceCard(
                     imageVector = when (device.type) {
                         BtDeviceType.AUDIO_VIDEO -> Icons.Default.BluetoothAudio
                         BtDeviceType.COMPUTER -> Icons.Default.Computer
-                        BtDeviceType.HEALTH -> Icons.Default.DirectionsRun
+                        BtDeviceType.HEALTH -> Icons.AutoMirrored.Filled.DirectionsRun
                         BtDeviceType.IMAGING -> Icons.Default.Image
                         BtDeviceType.NETWORKING -> Icons.Default.Cloud
                         BtDeviceType.PERIPHERAL -> Icons.Default.Image
@@ -108,7 +108,7 @@ fun DeviceCard(
             }
 
             Icon(
-                imageVector = Icons.Default.NavigateNext,
+                imageVector = Icons.AutoMirrored.Filled.NavigateNext,
                 contentDescription = stringResource(id = R.string.connect),
             )
         }

@@ -42,11 +42,9 @@ object DatastoreModule {
     @Provides
     fun providePreferencesDataStore(
         @ApplicationContext appContext: Context,
-    ): DataStore<UserPreferences> {
-        return DataStoreFactory.create(
-            serializer = UserPreferencesSerializer,
-            produceFile = { appContext.dataStoreFile(DATA_STORE_FILE_NAME) },
-            scope = CoroutineScope(Dispatchers.IO + SupervisorJob()),
-        )
-    }
+    ): DataStore<UserPreferences> = DataStoreFactory.create(
+        serializer = UserPreferencesSerializer,
+        produceFile = { appContext.dataStoreFile(DATA_STORE_FILE_NAME) },
+        scope = CoroutineScope(Dispatchers.IO + SupervisorJob()),
+    )
 }
