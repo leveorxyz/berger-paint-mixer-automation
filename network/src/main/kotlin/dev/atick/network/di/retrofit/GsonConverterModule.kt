@@ -29,7 +29,5 @@ object GsonConverterModule {
 
     @Singleton
     @Provides
-    fun provideGsonConverterFactory(): GsonConverterFactory {
-        return GsonConverterFactory.create()
-    }
+    fun provideGsonConverterFactory(): GsonConverterFactory = GsonConverterFactory.create()
 }

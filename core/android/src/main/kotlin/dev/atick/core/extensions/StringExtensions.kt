@@ -20,9 +20,7 @@ import android.util.Patterns
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
-fun String?.isEmailValid(): Boolean {
-    return !isNullOrEmpty() && Patterns.EMAIL_ADDRESS.matcher(this).matches()
-}
+fun String?.isEmailValid(): Boolean = !isNullOrEmpty() && Patterns.EMAIL_ADDRESS.matcher(this).matches()
 
 fun String?.isPasswordValid(): Boolean {
     val passwordRegex = "^(?=.*\\d)(?=.*[a-z]).{8,20}$"

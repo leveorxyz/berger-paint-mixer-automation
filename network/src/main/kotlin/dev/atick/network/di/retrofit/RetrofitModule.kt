@@ -40,11 +40,9 @@ object RetrofitModule {
     fun provideRetrofitClient(
         converterFactory: GsonConverterFactory,
         okHttpClient: OkHttpClient,
-    ): Retrofit {
-        return Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(converterFactory)
-            .client(okHttpClient)
-            .build()
-    }
+    ): Retrofit = Retrofit.Builder()
+        .baseUrl(BASE_URL)
+        .addConverterFactory(converterFactory)
+        .client(okHttpClient)
+        .build()
 }

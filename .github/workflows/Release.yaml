@@ -25,11 +25,11 @@ jobs:
         env:
           CONTENT: ${{ secrets.GOOGLE_SERVICES }}
 
-      - name: Set up JDK 17
+      - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
-          java-version: 17
-          distribution: 'zulu'
+          java-version: 21
+          distribution: 'temurin'
           cache: gradle
 
       - name: Make gradlew Executable
@@ -48,7 +48,7 @@ jobs:
           keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
           keyPassword: ${{ secrets.KEY_PASSWORD }}
         env:
-          BUILD_TOOLS_VERSION: "33.0.1"
+          BUILD_TOOLS_VERSION: "34.0.0"
 
       - name: Upload APK
         uses: actions/upload-artifact@v4

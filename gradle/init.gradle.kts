@@ -14,7 +14,7 @@
  *   limitations under the License.
  */
 
-val ktlintVersion = "0.48.1"
+val ktlintVersion = "1.4.0"
 
 initscript {
     val spotlessVersion = "7.2.1"
@@ -35,14 +35,25 @@ rootProject {
             kotlin {
                 target("**/*.kt")
                 targetExclude("**/build/**/*.kt")
-                ktlint(ktlintVersion).userData(mapOf("android" to "true"))
+                ktlint(ktlintVersion).editorConfigOverride(
+                    mapOf(
+                        "android" to "true",
+                    ),
+                ).customRuleSets(
+                    listOf(
+                        "io.nlopez.compose.rules:ktlint:0.4.27",
+                    ),
+                )
                 licenseHeaderFile(rootProject.file("spotless/copyright.kt"))
             }
             groovy {
                 target("**/*.gradle")
                 targetExclude("**/build/**/*.gradle")
                 // Look for the first line that doesn't have a block comment (assumed to be the license)
-                licenseHeaderFile(rootProject.file("spotless/copyright.gradle"), "(^(?![\\/ ]\\*).*$)")
+                licenseHeaderFile(
+                    rootProject.file("spotless/copyright.gradle"),
+                    "(^(?![\\/ ]\\*).*$)",
+                )
             }
             format("kts") {
                 target("**/*.kts")

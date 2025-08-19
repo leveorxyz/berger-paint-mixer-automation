@@ -40,7 +40,5 @@ class TakePictureActivityContract : ActivityResultContract<Uri, Pair<Boolean, Ur
     ): SynchronousResult<Pair<Boolean, Uri>>? = null
 
     @Suppress("AutoBoxing")
-    override fun parseResult(resultCode: Int, intent: Intent?): Pair<Boolean, Uri> {
-        return (resultCode == Activity.RESULT_OK) to imageUri
-    }
+    override fun parseResult(resultCode: Int, intent: Intent?): Pair<Boolean, Uri> = (resultCode == Activity.RESULT_OK) to imageUri
 }

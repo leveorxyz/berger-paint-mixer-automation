@@ -34,7 +34,5 @@ import javax.inject.Singleton
 object RestApiModule {
     @Singleton
     @Provides
-    fun provideApiService(retrofit: Retrofit): JetpackRestApi {
-        return retrofit.create(JetpackRestApi::class.java)
-    }
+    fun provideApiService(retrofit: Retrofit): JetpackRestApi = retrofit.create(JetpackRestApi::class.java)
 }

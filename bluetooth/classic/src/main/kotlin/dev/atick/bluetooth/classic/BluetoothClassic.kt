@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+@file:Suppress("ktlint:standard:backing-property-naming")
+
 package dev.atick.bluetooth.classic
 
 import android.Manifest
@@ -57,7 +59,9 @@ class BluetoothClassic @Inject constructor(
     private val bluetoothAdapter: BluetoothAdapter?,
     @ApplicationContext private val context: Context,
     @IoDispatcher private val ioDispatcher: CoroutineDispatcher,
-) : BluetoothUtils, BluetoothManager, BluetoothDataSource {
+) : BluetoothUtils,
+    BluetoothManager,
+    BluetoothDataSource {
 
     companion object {
         const val BT_UUID = "00001101-0000-1000-8000-00805F9B34FB"
@@ -200,9 +204,7 @@ class BluetoothClassic @Inject constructor(
         }
     }
 
-    override fun getBluetoothDataStream(): StateFlow<BtMessage?> {
-        return _bluetoothMessage.asStateFlow()
-    }
+    override fun getBluetoothDataStream(): StateFlow<BtMessage?> = _bluetoothMessage.asStateFlow()
 
     override suspend fun sendDataToBluetoothDevice(data: String): Result<Unit> {
         Timber.d("SENDING : $data")

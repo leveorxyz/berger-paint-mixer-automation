@@ -14,13 +14,54 @@
  * limitations under the License.
  */
 
+buildscript {
+    dependencies {
+        classpath(libs.google.oss.licenses.plugin)
+    }
+}
+
 plugins {
-    alias(libs.plugins.kotlin) apply(false)
-    alias(libs.plugins.android.library) apply(false)
-    alias(libs.plugins.android.application) apply(false)
-    alias(libs.plugins.kotlin.serialization) apply(false)
+    alias(libs.plugins.kotlin) apply (false)
+    alias(libs.plugins.android.library) apply (false)
+    alias(libs.plugins.android.application) apply (false)
+    alias(libs.plugins.kotlin.serialization) apply (false)
+    alias(libs.plugins.dagger.hilt.android) apply (false)
+    alias(libs.plugins.firebase.crashlytics) apply (false)
+    alias(libs.plugins.firebase.perf) apply false
+    alias(libs.plugins.kotlin.compose.compiler) apply (false)
     alias(libs.plugins.androidx.navigation.safeargs) apply(false)
-    alias(libs.plugins.dagger.hilt.android) apply(false)
-    alias(libs.plugins.firebase.crashlytics) apply false
-    alias(libs.plugins.gms) apply false
+    alias(libs.plugins.secrets) apply (false)
+    alias(libs.plugins.gms) apply (false)
+    alias(libs.plugins.ksp) apply (false)
+    alias(libs.plugins.dokka)
+}
+
+dependencies {
+    dokka(project(":app"))
+
+    // ... Core
+    dokka(project(":core:android"))
+    dokka(project(":core:ui"))
+
+    // ... Bluetooth
+    dokka(project(":bluetooth:common"))
+    dokka(project(":bluetooth:classic"))
+
+    // ... Network
+    dokka(project(":network"))
+
+    // ... Storage
+    dokka(project(":storage"))
+
+    // ... Dokka Plugins
+    dokkaPlugin(libs.dokka.android.plugin)
+    dokkaPlugin(libs.dokka.mermaid.plugin)
+}
+
+dokka {
+    pluginsConfiguration.html {
+        customAssets.from("docs/assets/logo-icon.svg")
+        customStyleSheets.from("docs/assets/dokka.css")
+        footerMessage.set("Made with ❤\uFE0F by Atick Faisal")
+    }
 }

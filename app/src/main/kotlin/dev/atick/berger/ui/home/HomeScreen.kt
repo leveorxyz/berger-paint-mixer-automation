@@ -28,9 +28,9 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import dev.atick.berger.R
@@ -41,6 +41,7 @@ import kotlinx.coroutines.launch
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
 fun HomeScreen(
+    modifier: Modifier = Modifier,
     homeViewModel: HomeViewModel = viewModel(),
 ) {
     val homeUiState by homeViewModel.homeUiState.collectAsState()
@@ -60,6 +61,7 @@ fun HomeScreen(
     }
 
     Scaffold(
+        modifier = modifier,
         topBar = {
             TopBar(
                 title = stringResource(R.string.home),

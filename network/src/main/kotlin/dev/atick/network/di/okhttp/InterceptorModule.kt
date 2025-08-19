@@ -31,13 +31,11 @@ object InterceptorModule {
 
     @Provides
     @Singleton
-    fun provideLoggingInterceptor(): HttpLoggingInterceptor {
-        return HttpLoggingInterceptor { message ->
-            Timber.i(message)
-        }.apply {
-            if (BuildConfig.DEBUG) {
-                setLevel(HttpLoggingInterceptor.Level.BODY)
-            }
+    fun provideLoggingInterceptor(): HttpLoggingInterceptor = HttpLoggingInterceptor { message ->
+        Timber.i(message)
+    }.apply {
+        if (BuildConfig.DEBUG) {
+            setLevel(HttpLoggingInterceptor.Level.BODY)
         }
     }
 }

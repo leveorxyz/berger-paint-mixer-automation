@@ -38,14 +38,10 @@ fun Context.showToast(message: String) {
     Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 }
 
-fun Context.hasPermission(permission: String): Boolean {
-    return ContextCompat.checkSelfPermission(this, permission) ==
-        PackageManager.PERMISSION_GRANTED
-}
+fun Context.hasPermission(permission: String): Boolean = ContextCompat.checkSelfPermission(this, permission) ==
+    PackageManager.PERMISSION_GRANTED
 
-fun Context.isAllPermissionsGranted(permissions: List<String>): Boolean {
-    return permissions.all { hasPermission(it) }
-}
+fun Context.isAllPermissionsGranted(permissions: List<String>): Boolean = permissions.all { hasPermission(it) }
 
 @SuppressLint("MissingPermission")
 fun Context.showNotification(
@@ -65,13 +61,11 @@ fun Context.cancelNotification(notificationId: Int) {
     }
 }
 
-fun Context.tryUnregisterReceiver(receiver: BroadcastReceiver): Result<Unit> {
-    return try {
-        unregisterReceiver(receiver)
-        Result.success(Unit)
-    } catch (e: Exception) {
-        Result.failure(e)
-    }
+fun Context.tryUnregisterReceiver(receiver: BroadcastReceiver): Result<Unit> = try {
+    unregisterReceiver(receiver)
+    Result.success(Unit)
+} catch (e: Exception) {
+    Result.failure(e)
 }
 
 // ... https://medium.com/codex/how-to-implement-the-activity-result-api-takepicture-contract-with-uri-return-type-7c93881f5b0f
@@ -94,21 +88,19 @@ fun Context.getTmpFileUri(appId: String): Uri {
 }
 
 // ... https://stackoverflow.com/a/64488260/12737399
-fun Context.getFileFromContentUri(contentUri: Uri): File? {
-    return try {
-        val fileExtension = getFileExtension(this, contentUri)
-        val fileName = "temp_file" + if (fileExtension != null) ".$fileExtension" else ""
-        val tempFile = File(cacheDir, fileName)
-        tempFile.createNewFile()
-        val oStream = FileOutputStream(tempFile)
-        val inputStream = contentResolver.openInputStream(contentUri)
-        inputStream?.let { copy(inputStream, oStream) }
-        oStream.flush()
-        tempFile
-    } catch (e: Exception) {
-        e.printStackTrace()
-        null
-    }
+fun Context.getFileFromContentUri(contentUri: Uri): File? = try {
+    val fileExtension = getFileExtension(this, contentUri)
+    val fileName = "temp_file" + if (fileExtension != null) ".$fileExtension" else ""
+    val tempFile = File(cacheDir, fileName)
+    tempFile.createNewFile()
+    val oStream = FileOutputStream(tempFile)
+    val inputStream = contentResolver.openInputStream(contentUri)
+    inputStream?.let { copy(inputStream, oStream) }
+    oStream.flush()
+    tempFile
+} catch (e: Exception) {
+    e.printStackTrace()
+    null
 }
 
 private fun getFileExtension(context: Context, uri: Uri): String? {

@@ -39,12 +39,10 @@ object OkHttpClientModule {
     @Provides
     fun provideOkHttpClient(
         loggingInterceptor: HttpLoggingInterceptor,
-    ): OkHttpClient {
-        return OkHttpClient.Builder()
-            .connectTimeout(TIME_OUT, SECONDS)
-            .readTimeout(TIME_OUT, SECONDS)
-            .writeTimeout(TIME_OUT, SECONDS)
-            .addInterceptor(loggingInterceptor)
-            .build()
-    }
+    ): OkHttpClient = OkHttpClient.Builder()
+        .connectTimeout(TIME_OUT, SECONDS)
+        .readTimeout(TIME_OUT, SECONDS)
+        .writeTimeout(TIME_OUT, SECONDS)
+        .addInterceptor(loggingInterceptor)
+        .build()
 }

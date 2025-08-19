@@ -27,29 +27,25 @@ class HomeRepositoryImpl @Inject constructor(
     private val jetpackDataSource: JetpackDataSource,
     private val preferencesDatastore: PreferencesDatastore,
 ) : HomeRepository {
-    override suspend fun getItem(id: Int): Result<Item> {
-        return try {
-            val response = jetpackDataSource.getItem(id)
-            val item = Item(
-                id = response.id,
-                title = response.title,
-            )
-            Result.success(item)
-        } catch (exception: Exception) {
-            Result.failure(exception)
-        }
+    override suspend fun getItem(id: Int): Result<Item> = try {
+        val response = jetpackDataSource.getItem(id)
+        val item = Item(
+            id = response.id,
+            title = response.title,
+        )
+        Result.success(item)
+    } catch (exception: Exception) {
+        Result.failure(exception)
     }
 
     override suspend fun saveItem(item: Item) {
         jetpackDao.insert(item.toRoomItem())
     }
 
-    override suspend fun getUserId(): Result<String> {
-        return try {
-            val userId = preferencesDatastore.getUserId()
-            Result.success(userId)
-        } catch (exception: Exception) {
-            Result.failure(exception)
-        }
+    override suspend fun getUserId(): Result<String> = try {
+        val userId = preferencesDatastore.getUserId()
+        Result.success(userId)
+    } catch (exception: Exception) {
+        Result.failure(exception)
     }
 }

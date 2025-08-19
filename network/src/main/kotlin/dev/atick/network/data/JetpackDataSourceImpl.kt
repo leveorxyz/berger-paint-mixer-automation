@@ -23,7 +23,5 @@ import javax.inject.Inject
 class JetpackDataSourceImpl @Inject constructor(
     private val jetpackRestApi: JetpackRestApi,
 ) : JetpackDataSource {
-    override suspend fun getItem(id: Int): Response {
-        return jetpackRestApi.getItem(id)
-    }
+    override suspend fun getItem(id: Int): Response = jetpackRestApi.getItem(id)
 }
