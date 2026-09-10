@@ -2,70 +2,70 @@
 
 # ... PROJECT ...
 java = "21"
-kotlin = "2.2.10"
-androidGradlePlugin = "8.12.1"
-gmsPlugin = "4.4.3"
-ksp = "2.2.10-2.0.2"
-dokka = "2.0.0"
+kotlin = "2.4.20"
+androidGradlePlugin = "9.4.0"
+gmsPlugin = "4.5.0"
+ksp = "2.3.12"
+dokka = "2.2.0"
 dokkaMermaid = "0.6.0"
 secrets = "2.0.1"
 
 # ... CORE:ANDROID ...
-androidxCore = "1.17.0"
-kotlinxCoroutines = "1.10.2"
-kotlinxDatetime = "0.7.1-0.6.x-compat"
-kotlinxSerializationJson = "1.9.0"
+androidxCore = "1.19.0"
+kotlinxCoroutines = "1.11.0"
+kotlinxDatetime = "0.8.0-0.6.x-compat"
+kotlinxSerializationJson = "1.11.0"
 timber = "5.0.1"
 
 # ... CORE:UI ...
-androidxNavigation = "2.9.3"
-androidxFragment = "1.8.9"
-androidxAppCompat = "1.7.1"
-androidxActivity = "1.10.1"
-androidxLifecycle = "2.9.2"
-androidxComposeBom = "2025.08.00"
+androidxNavigation = "2.10.1"
+androidxFragment = "1.9.0"
+androidxAppCompat = "1.8.0"
+androidxActivity = "1.13.0"
+androidxLifecycle = "2.11.0"
+androidxComposeBom = "2026.09.00"
 androidxComposeCompiler = "1.5.15"
-androidxCoreSplashscreen = "1.0.1"
-androidxHiltNavigationCompose = "1.2.0"
-lottieCompose = "6.6.7"
+androidxCoreSplashscreen = "1.2.0"
+androidxHiltNavigationCompose = "1.4.0"
+lottieCompose = "6.7.1"
 
 # ... APP ...
 chart = "3.1.0"
 
 # ... NETWORK ...
-okhttp = "5.1.0"
+okhttp = "5.5.0"
 retrofit = "3.0.0"
 coil = "2.7.0"
 
 # ... STORAGE:PREFERENCES ...
-androidxDataStore = "1.1.7"
+androidxDataStore = "1.2.1"
 
 # ... STORAGE:ROOM ...
-room = "2.7.2"
+room = "2.8.5"
 
 # ... AUTH ...
-playServicesAuth = "21.4.0"
-androidxCredentials = "1.5.0"
-identityGoogleId = "1.1.1"
+playServicesAuth = "22.0.0"
+androidxCredentials = "1.6.0"
+identityGoogleId = "1.2.0"
 
 # ... FIREBASE ...
-firebaseBom = "34.1.0"
-firebaseCrashlyticsPlugin = "3.0.6"
-firebasePerfPlugin = "2.0.1"
+firebaseBom = "34.19.0"
+firebaseCrashlyticsPlugin = "3.0.8"
+firebasePerfPlugin = "2.0.2"
 
 # ... DAGGER-HILT ...
-daggerHilt = "2.57"
-daggerHiltExt = "1.2.0"
+daggerHilt = "2.60.1"
+daggerHiltExt = "1.4.0"
 
 # ... Open Source Licenses ...
-googleOss = "17.2.2"
-googleOssPlugin = "0.10.7"
+googleOss = "17.5.2"
+googleOssPlugin = "0.13.0"
 
 # ... LEAK CANARY ...
 leakcanaryAndroid = "2.14"
 
 # ... WORK MANAGER ...
-workVersion = "2.10.3"
+workVersion = "2.11.2"
 
 # ... SDK-CONFIG ...
 minSdk = "24"
